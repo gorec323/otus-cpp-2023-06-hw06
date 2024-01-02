@@ -3,7 +3,7 @@ cmake_minimum_required(VERSION 3.6)
 set(PATCH_VERSION 1 CACHE INTERNAL "Patch version. Default = 1")
 set(PROJECT_VERSION 0.0.${PATCH_VERSION} CACHE INTERNAL "Application version" FORCE)
 
-project(myapplication VERSION ${PROJECT_VERSION} LANGUAGES CXX)
+project(matrix VERSION ${PROJECT_VERSION} LANGUAGES CXX)
 
 configure_file(
     version.h.in
@@ -11,7 +11,7 @@ configure_file(
 )
 
 if (NOT CMAKE_CXX_STANDARD)
-    set(CMAKE_CXX_STANDARD 14)
+    set(CMAKE_CXX_STANDARD 17)
 endif()
 
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -35,6 +35,11 @@ install(TARGETS ${PROJECT_NAME}
 target_include_directories(${PROJECT_NAME}
 PRIVATE
     ${CMAKE_BINARY_DIR}
+)
+
+target_link_libraries(${PROJECT_NAME}
+PRIVATE
+    matrixlib
 )
 
 if (UNIX)

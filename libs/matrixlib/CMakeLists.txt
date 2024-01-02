@@ -1,18 +1,17 @@
 cmake_minimum_required(VERSION 3.6)
 
-project(mylib  LANGUAGES CXX)
+project(matrixlib  LANGUAGES CXX)
 
-add_library(${PROJECT_NAME}
-    include/mylib.hpp
-    src/mylib.cpp
+add_library(${PROJECT_NAME} INTERFACE
+    include/matrix.hpp
 )
 
-if (${BUILD_TESTING})
+if (BUILD_TESTING)
     add_subdirectory(tests)
 endif()
 
 target_include_directories(${PROJECT_NAME}
-PUBLIC
-    ${CMAKE_CURRENT_SOURCE_DIR}
+INTERFACE
+#    ${CMAKE_CURRENT_SOURCE_DIR}
     ${CMAKE_CURRENT_SOURCE_DIR}/include
 )
